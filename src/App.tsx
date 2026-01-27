@@ -1,13 +1,27 @@
 import './styles/global.css';
 import './styles/theme.css';
+import { Heading } from './components/Heading';
+import { TimerIcon } from 'lucide-react';
 
 
-export function App () {
-    console.log('App');
 
+
+
+export function App() {
     return (
-        <div>
-            <h1>Helloasdfadfgadfgfdgaerfgasdfdsafraebgfvgghnmjhgfd World</h1>
-        </div>
+        <>
+            <Heading>
+                Hello World
+                <button>
+                    <TimerIcon />
+                </button>
+                
+            </Heading>
+
+            <p>
+                <h1>Helloasdfadfgaduikghmn sfgbfdvx drt a a rtag fgfdgaerfgasdfdsafraebgfvgghnmjhgfd World</h1>
+
+            </p>
+        </>
     )
 }
