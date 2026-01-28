@@ -18,7 +18,7 @@
 --link-hover: #288a28;
 
 --success: #00ff00;
---warning: #bbff00;
+--warning: #ffee00;
 --error: #ff0202;
 --info: #0ed1f3;
 
@@ -40,8 +40,25 @@
 --disabled: #666666;
 --disabled-text: #ffffff;
 
+}
 
 
+:root[data-theme="light"] {
+    --gray-100: #000000;  
+    --gray-200: #252525;
+    --gray-300: #474747;
+    --gray-400: #616060;
+    --gray-500: #9c9b9b;
+    --gray-600: #9e9d9d;
+    --gray-700: #cccaca;
+    --gray-800: #dddbdb;
+    --gray-900: #fffdfd;
 
+--text-default: #000000;
+--text-muted: #474646;
+
+
+--link-color: #38bd38;
+--linkhover: #185318;
 
 }
