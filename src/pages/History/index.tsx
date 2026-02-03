@@ -1,18 +1,13 @@
 import { Container } from "../../components/Containers";
-import { CountDown } from "../../components/CountDown";
-import { MainForm } from "../../components/MainForm";
+import { TaskHistory } from "../../components/TaskHistory";
 import { MainTemplate } from "../../templates/MainTemplate";
 
-export function Home() {
+export function History() {
     return (
         <div>
             <MainTemplate>
                 <Container>
-                    <CountDown />
-                </Container>
-
-                <Container>
-                    <MainForm />
+                    <TaskHistory />
                 </Container>
             </MainTemplate>
         </div>

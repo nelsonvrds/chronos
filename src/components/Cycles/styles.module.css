@@ -6,12 +6,15 @@
     gap: 1.5rem;
 }
 
-
+.cyclesTitle {
+    font-weight: 600;
+}
 
 .cyclesDots {
     display: flex;
     gap: 0.5rem;
-   
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .cyclesDot {
@@ -19,17 +22,22 @@
     height: 2rem;
     border-radius: 50%;
     background-color: var(--primary);
-    border-radius: 50%;
+    cursor: default;
 }
 
-.workTime{
-background: var(--warning);
-
-}
-.shortBreakTime{
-background: var(--primary);
+.cyclesDot[title]:hover {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
 }
 
-.longBreakTime{
-background: var(--info) ;
+.workTime {
+    background: var(--warning);
+}
+
+.shortBreakTime {
+    background: var(--primary);
+}
+
+.longBreakTime {
+    background: var(--info);
 }

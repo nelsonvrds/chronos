@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 import { TimerIcon, HouseIcon, SunIcon, SettingsIcon, MoonIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -44,19 +45,18 @@ export function Menu() {
 
     return (
         <nav className={styles.menu}>
-            <a className={styles.menuLink}
-                href="#"
+            <Link className={styles.menuLink}
+                to="/"
                 aria-label="Home"
-                
-                title="Home" >
+                title="Home">
                 <HouseIcon />
-            </a>
-            <a className={styles.menuLink}
-                href="#"
-                aria-label="Historico"
-                title="Historico">
+            </Link>
+            <Link className={styles.menuLink}
+                to="/history"
+                aria-label="Histórico"
+                title="Histórico">
                 <TimerIcon />
-            </a>
+            </Link>
 
             <a className={styles.menuLink}
                 href="#"
