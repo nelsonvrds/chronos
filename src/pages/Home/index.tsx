@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Container } from "../../components/Containers";
 import { CountDown } from "../../components/CountDown";
 import { MainForm } from "../../components/MainForm";
@@ -13,6 +14,12 @@ export function Home() {
 
                 <Container>
                     <MainForm />
+                </Container>
+
+                <Container>
+                    <div style={{ textAlign: 'center' }}>
+                        <Link to="/como-funciona">Como funciona</Link>
+                    </div>
                 </Container>
             </MainTemplate>
         </div>
