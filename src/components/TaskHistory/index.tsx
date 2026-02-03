@@ -12,6 +12,18 @@ function isFinished(task: TaskModel): boolean {
     return task.completedDate !== null || task.interruptedDate !== null;
 }
 
+function formatTime(timestamp: number): string {
+    return new Date(timestamp).toLocaleTimeString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+    });
+}
+
+function getEndDate(task: TaskModel): number {
+    return task.completedDate ?? task.interruptedDate ?? task.startDate;
+}
+
 export function TaskHistory() {
     const { state } = useTaskContext();
 
@@ -36,6 +48,7 @@ export function TaskHistory() {
                     <thead>
                         <tr>
                             <th className={styles.colTarefa}>Tarefa</th>
+                            <th className={styles.colHorario}>Horário</th>
                             <th className={styles.colPeriodo}>Período</th>
                             <th className={styles.colStatus}>Status</th>
                         </tr>
@@ -44,6 +57,9 @@ export function TaskHistory() {
                         {finishedTasks.map((task) => (
                             <tr key={task.id} className={styles.row}>
                                 <td className={styles.colTarefa}>{task.name}</td>
+                                <td className={styles.colHorario} title={`Início: ${formatTime(task.startDate)} — Fim: ${formatTime(getEndDate(task))}`}>
+                                    {formatTime(task.startDate)} → {formatTime(getEndDate(task))}
+                                </td>
                                 <td className={styles.colPeriodo}>
                                     <span
                                         className={`${styles.periodBadge} ${styles[`period_${task.type}`]}`}
