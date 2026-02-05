@@ -2,13 +2,34 @@ import { useEffect, useState } from "react";
 import { initialTaskState } from "./initialTaskState";
 import { TaskContext } from "./TaskContext";
 import { formatedSecondsToMinutes } from "../../utils/formatedSecondsToMinutes.ts";
+import { loadTasksFromStorage, saveTasksToStorage } from "../../utils/taskStorage";
+import { loadConfigFromStorage, saveConfigToStorage } from "../../utils/configStorage";
 
 type TaskContextProviderProps = {
     children: React.ReactNode;
 };
 
 export function TaskContextProvider({ children }: TaskContextProviderProps) {
-    const [state, setState] = useState(initialTaskState);
+    const [state, setState] = useState(() => {
+        const savedTasks = loadTasksFromStorage();
+        const savedConfig = loadConfigFromStorage();
+        return { ...initialTaskState, tasks: savedTasks, config: savedConfig };
+    });
+
+    useEffect(() => {
+        saveTasksToStorage(state.tasks);
+    }, [state.tasks]);
+
+    useEffect(() => {
+        saveConfigToStorage(state.config);
+    }, [state.config]);
+
+    function clearHistory() {
+        setState((prev) => ({
+            ...prev,
+            tasks: prev.tasks.filter((t) => t.completedDate === null && t.interruptedDate === null),
+        }));
+    }
 
     useEffect(() => {
         if (!state.activeTask) return;
@@ -44,8 +65,16 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
         return () => clearInterval(intervalId);
     }, [state.activeTask]);
 
+    useEffect(() => {
+        if (state.activeTask) {
+            document.title = `Chronos Pomodoro - ${state.formattdSecondsRemaining}`;
+        } else {
+            document.title = "Chronos Pomodoro";
+        }
+    }, [state.activeTask, state.formattdSecondsRemaining]);
+
     return (
-        <TaskContext.Provider value={{ state, setState }}>
+        <TaskContext.Provider value={{ state, setState, clearHistory }}>
             {children}
         </TaskContext.Provider>
     );

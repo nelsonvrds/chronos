@@ -58,12 +58,12 @@ export function Menu() {
                 <TimerIcon />
             </Link>
 
-            <a className={styles.menuLink}
-                href="#"
+            <Link className={styles.menuLink}
+                to="/configuracoes"
                 aria-label="Configurações"
                 title="Configurações">
                 <SettingsIcon />
-            </a>
+            </Link>
 
             <a className={styles.menuLink}
                 href=""
